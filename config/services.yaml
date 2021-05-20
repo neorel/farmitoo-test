@@ -29,3 +29,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    _instanceof:
+        App\Service\Delivery\DeliveryComputerInterface:
+            tags: ['app.delivery_computer']
+
+    App\Service\DeliveryService:
+        arguments:
+            - !tagged_iterator app.delivery_computer

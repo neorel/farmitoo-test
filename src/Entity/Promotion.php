@@ -32,4 +32,17 @@ class Promotion
         $this->reduction = $reduction;
         $this->freeDelivery = $freeDelivery;
     }
+
+    public function getMinAmount(): int{
+        return $this->minAmount;
+    }
+    
+    public function getReduction(): int {
+        return $this->reduction;
+    }
+
+    public function isFreeDelivery(): bool
+    {
+        return $this->freeDelivery;
+    }
 }

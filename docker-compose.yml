@@ -1,0 +1,15 @@
+services:
+    php:
+        build: .
+        volumes: 
+            - ./:/var/www/html:rw
+    nginx:
+        build: docker/nginx
+        ports:
+            - '8080:80'
+        links:
+            - php
+        volumes_from:
+            - php
+        volumes:
+            - ./docker/nginx/logs/:/var/log/nginx:cached

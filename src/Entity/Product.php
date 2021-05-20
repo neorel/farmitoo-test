@@ -39,4 +39,14 @@ class Product
     {
         return $this->title;
     }
+
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    public function getBrand(): string
+    {
+        return $this->brand;
+    }
 }

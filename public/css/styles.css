@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lato, sans-serif;
+}
+
+:root {
+    --title_background-color: #072621;
+    --title_color: #FFF;
+    --block_border-color: #072621;
+    --separator-color: #C0C0C0;
+    --text_color-light: #808080;
+    --text_font-weight-bold: 700;
+    --cart-block_background-color_product: #F8FFF8;
+    --cart-block_background-color_fee: #F8F8FF;
+    --cart-block_background-color_tax: #FFF8F8;
+}
+
+.cart_title {
+    height: 3rem;
+    background-color: var(--title_background-color);
+    text-align: center;
+    color: var(--title_color);
+    font-size: 2rem;
+    line-height: 3rem;
+    font-weight: var(--text_font-weight-bold);
+}
+
+
+
+.cart_product-list {
+    padding: .5rem;
+    background-color: var(--cart-block_background-color_product);
+}
+
+.cart_product-list_title {
+    font-size: 1.5rem;
+}
+
+.product {
+    display: grid;
+    grid-template-areas: "title title price"
+                         "brand quantity total";
+    grid-template-columns: 1fr 3rem 6rem;
+    gap: .2rem;
+    margin-top: .5rem;
+}
+.product:not(:last-of-type) {
+    border-bottom: 1px solid var(--separator-color);
+}
+.product[data-type="header"] {
+    display: none;
+}
+.product[data-type="header"] .product_brand,
+.product[data-type="header"] .product_title,
+.product[data-type="header"] .product_price,
+.product[data-type="header"] .product_quantity,
+.product[data-type="header"] .product_total-price {
+   font-weight: var(--text_font-weight-bold);
+   font-size: 1rem;
+   color: inherit;
+}
+
+.product_title {
+    grid-area: title;
+    font-weight: var(--text_font-weight-bold);
+}
+
+.product_brand {
+    grid-area: brand;
+    font-size: .8rem;
+}
+
+.product_price {
+    grid-area: price;
+    color: var(--text_color-light);
+    text-align: right;
+}
+
+.product_quantity {
+    grid-area: quantity;
+    text-align: center;
+}
+.product_quantity_less,
+.product_quantity_more {
+    cursor: pointer;
+}
+
+.product_total-price {
+    grid-area: total;
+    font-weight: var(--text_font-weight-bold);
+    text-align: right;
+}
+
+
+
+.cart_sub-total,
+.cart_total-excl-taxes,
+.cart_total-incl-taxes {
+    padding: .5rem;
+    display: grid;
+    grid-template-areas: "title value";
+    grid-template-columns: 1fr 6rem;
+    gap: .2rem;
+    border-top: 1px solid var(--separator-color);
+    margin-bottom: 1rem;
+}
+
+.cart_sub-total_title,
+.cart_total-excl-taxes_title,
+.cart_total-incl-taxes_title {
+    grid-area: title;
+    font-size: 1rem;
+    font-weight: var(--text_font-weight-bold);
+}
+
+.cart_sub-total_value,
+.cart_total-excl-taxes_value,
+.cart_total-incl-taxes_value {
+    grid-area: value;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: var(--text_font-weight-bold);
+}
+
+.cart_total-incl-taxes {
+    grid-template-columns: 1fr 9rem;
+}
+.cart_total-incl-taxes_title,
+.cart_total-incl-taxes_value {
+    font-size: 1.5rem;
+}
+
+
+
+.cart_promotion-list {
+    padding: .5rem;
+    background-color: var(--cart-block_background-color_fee);
+}
+
+.cart_promotion-list_title {
+    font-size: 1.5rem;
+    font-weight: var(--text_font-weight-bold);
+}
+
+.promotion {
+    display: grid;
+    grid-template-areas: "title reduction value";
+    grid-template-columns: 1fr 3rem 6rem;
+    gap: .2rem;
+    margin-top: .5rem;
+}
+.promotion:not(:last-of-type) {
+    border-bottom: 1px solid var(--separator-color);
+}
+
+.promotion_title {
+    grid-area: title;
+}
+
+.promotion_reduction {
+    grid-area: reduction;
+    text-align: right;
+}
+
+.promotion_value {
+    grid-area: value;
+    text-align: right;
+}
+
+
+
+.cart_delivery-list {
+    padding: .5rem;
+    background-color: var(--cart-block_background-color_fee);
+}
+
+.cart_delivery-list_title {
+    font-size: 1.5rem;
+    font-weight: var(--text_font-weight-bold);
+}
+
+.delivery {
+    display: grid;
+    grid-template-areas: "brand value";
+    grid-template-columns: 1fr 6rem;
+    gap: .2rem;
+    margin-top: .5rem;
+}
+.delivery:not(:last-of-type) {
+    border-bottom: 1px solid var(--separator-color);
+}
+
+.delivery_brand {
+    grid-area: brand;
+}
+
+.delivery_value {
+    grid-area: value;
+    text-align: right;
+}
+
+
+
+.cart_tax-list {
+    padding: .5rem;
+    background-color: var(--cart-block_background-color_tax);
+}
+
+.cart_tax-list_title {
+    font-size: 1.5rem;
+    font-weight: var(--text_font-weight-bold);
+}
+
+.tax {
+    display: grid;
+    grid-template-areas: "brand rate value";
+    grid-template-columns: 1fr 3rem 6rem;
+    gap: .2rem;
+    margin-top: .5rem;
+}
+.tax:not(:last-of-type) {
+    border-bottom: 1px solid var(--separator-color);
+}
+
+.tax_brand {
+    grid-area: brand;
+}
+
+.tax_rate {
+    grid-area: rate;
+    text-align: right;
+}
+
+.tax_value {
+    grid-area: value;
+    text-align: right;
+}
+
+
+
+.cart_payment {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.cart_payment_button {
+    width: 100%;
+    min-height: 3rem;
+    font-size: 2rem;
+}
+
+@media (min-width: 760px) {
+    .cart {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
+    .product {
+        grid-template-areas: "brand title price quantity total";
+        grid-template-columns: 1fr 5fr 9rem 1fr 9rem;
+        height: 3rem;
+        line-height: 3rem;
+    }
+    .product[data-type="header"] {
+        display: grid;
+    }
+
+    .promotion, .delivery, .tax {
+        height: 2rem;
+        line-height: 2rem;
+    }
+
+    .cart_payment {
+        position: unset;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .cart_payment_button {
+        width: 9rem;
+    }
+}

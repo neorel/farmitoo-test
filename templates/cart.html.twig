@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+
+    <title>Farmitoo test</title>
+    <meta name="description" content="Farmitoo test">
+    <meta name="author" content="Aurélien LEMAITRE">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <div class="cart">
+        <h1 class="cart_title">Panier</h1>
+        <div class="cart_product-list">
+            <h2 class="cart_product-list_title">Produits</h2>
+            <div class="product" data-type="header">
+                <span class="product_title">Produit</span>
+                <span class="product_brand">Marque</span>
+                <span class="product_price">Prix unitaire HT</span>
+                <span class="product_quantity">Quantité</span>
+                <span class="product_total-price">Prix total HT</span>
+            </div>
+{% for item in order.items %}
+            <div class="product">
+                <span class="product_title">{{ item.product.title }}</span>
+                <span class="product_brand">{{ item.product.brand }}</span>
+                <span class="product_price">{{ item.product.price|price }}</span>
+                <span class="product_quantity">
+                    <span class="product_quantity_less">-</span>
+                    <span class="product_quantity_value">{{ item.quantity }}</span>
+                    <span class="product_quantity_more">+</span>
+                </span>
+                <span class="product_total-price">{{ (item.quantity * item.product.price)|price }}</span>
+            </div>
+{% endfor %}
+        </div>
+        <div class="cart_sub-total">
+            <h2 class="cart_sub-total_title">Sous-Total HT</h2>
+            <span class="cart_sub-total_value">{{ total_items|price }}</span>
+        </div>
+        <div class="cart_promotion-list">
+            <h2 class="cart_promotion-list_title">Promotions</h2>
+{% for promotion in promotions %}
+            <div class="promotion">
+                <span class="promotion_title">Minimun d'achat: {{ promotion.entity.minAmount|price }}</span>
+                <span class="promotion_reduction">- {{ promotion.entity.reduction }} %</span>
+                <span class="promotion_value">- {{ promotion.value|price }}</span>
+            </div>
+{% endfor %}
+        </div>
+        <div class="cart_delivery-list">
+            <h2 class="cart_delivery-list_title">Frais de port</h2>
+{% for brand, value in deliveries %}
+            <div class="delivery">
+                <span class="delivery_brand">{{ brand }} </span>
+                <span class="delivery_value">{{ value|price }}</span>
+            </div>
+{% endfor %}
+        </div>
+        <div class="cart_total-excl-taxes">
+            <h2 class="cart_total-excl-taxes_title">Total HT</h2>
+            <span class="cart_total-excl-taxes_value">{{ total_tax_excl|price }}</span>
+        </div>
+        <div class="cart_tax-list">
+            <h2 class="cart_tax-list_title">TVA</h2>
+{% for brand, tax in taxes %}
+            <div class="tax">
+                <span class="tax_brand">{{ brand }}</span>
+                <span class="tax_rate">{{ tax.rate }} %</span>
+                <span class="tax_value">{{ tax.value|price }}</span>
+            </div>
+{% endfor %}
+        </div>
+        <div class="cart_total-incl-taxes">
+            <h2 class="cart_total-incl-taxes_title">Total TTC</h2>
+            <span class="cart_total-incl-taxes_value">{{ total_tax_incl|price }}</span>
+        </div>
+        <div class="cart_payment">
+            <button class="cart_payment_button">
+                Payer
+            </button>
+        </div>
+    </div>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

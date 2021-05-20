@@ -6,13 +6,24 @@ namespace App\Entity;
 
 class Item
 {
-    /**
-     * @var Product
-     */
-    protected $product;
+    public function __construct(
+        protected Product $product, 
+        protected int $quantity = 1
+    ) {}
 
-    /**
-     * @var int
-     */
-    protected $quantity;
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): self
+    {
+        $this->quantity = $quantity;
+        return $this;
+    }
 }
